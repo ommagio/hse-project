@@ -75,16 +75,6 @@ ParserCommand CommandLine(int argc, char** argv) {
 
             filters.emplace_back(std::make_unique<BlurFilter>(sigma));
 
-        } else if (arg == "-file") {
-            std::ifstream file(argv[i + 1], std::ios::binary);
-            for (std::string line; std::getline(file, line);) {
-                if (line == "-neg") {
-                    filters.emplace_back(std::make_unique<NegativeFilter>());
-                } else if (line == "-sepia") {
-                    filters.emplace_back(std::make_unique<SepiaFilter>());
-                }
-                ++i;
-            }
         } else {
             throw std::runtime_error("Неопознанный фильтр: " + arg);
         }
